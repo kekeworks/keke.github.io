@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>山田 太郎のポートフォリオ</title>
+  <meta name="description" content="山田 太郎が作ったWebサイトの一覧です。">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <p class="eyebrow">PORTFOLIO</p>
+      <h1>山田 太郎</h1>
+      <nav aria-label="ページ内メニュー">
+        <a href="#about">自己紹介</a>
+        <a href="#works">作品</a>
+        <a href="#skills">スキル</a>
+        <a href="#contact">連絡先</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="about">
+      <h2>自己紹介</h2>
+      <p>はじめまして、山田 太郎です。Webサイトづくりを勉強中の学生です。授業で作ったサイトを、このページにまとめています。</p>
+    </section>
+
+    <section id="works">
+      <h2>作品</h2>
+      <div id="works-list" class="works-grid"></div>
+    </section>
+
+    <section id="skills">
+      <h2>スキル</h2>
+      <ul class="tags tags-large">
+        <li>HTML</li>
+        <li>CSS</li>
+        <li>JavaScript</li>
+        <li>Git / GitHub</li>
+      </ul>
+    </section>
+
+    <section id="contact">
+      <h2>連絡先</h2>
+      <p>GitHub: <a href="https://github.com/your-name" target="_blank" rel="noopener">https://github.com/your-name</a></p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap">&copy; 山田 太郎</div>
+  </footer>
+
+  <script src="works.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
