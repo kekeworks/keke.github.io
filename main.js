@@ -10,7 +10,7 @@ function escapeHtml(s) {
 function renderWorkCard(work) {
   const e = escapeHtml;
   const img = work.image
-    ? `<img src="${e(work.image)}" alt="${e(work.title)}" loading="lazy">`
+    ? `<img src="${e(work.image)}" alt="${e(work.title)}" loading="lazy" onerror="this.remove()">`
     : '';
   const tags = work.tags && work.tags.length
     ? `<ul class="tags">${work.tags.map((t) => `<li>${e(t)}</li>`).join('')}</ul>`

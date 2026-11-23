@@ -36,3 +36,7 @@ test('エスケープ', () => {
 test('renderWorks 空', () => {
   assert.ok(renderWorks([]).includes('作品はまだありません'));
 });
+
+test('画像は読み込み失敗時に自分で消える', () => {
+  assert.ok(renderWorkCard(full).includes('onerror="this.remove()"'));
+});

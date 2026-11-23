@@ -8,7 +8,6 @@ var WORKS = [
     description: 'HTMLとCSSだけで作った、はじめての自己紹介ページです。',
     url: 'https://example.com/profile',
     repo: 'https://github.com/example/profile',
-    image: 'images/profile.png',
     tags: ['HTML', 'CSS'],
   },
   {
