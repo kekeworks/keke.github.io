@@ -4,6 +4,11 @@
 // repo(GitHubのURL)・image(画像のパス)・tags(使った技術の配列)は省略できます。
 var WORKS = [
   {
+    title: '実習先レビューサイト',
+    description: '実習先のレビューをまとめたサイトです。',
+    url: 'https://jisshu-review.pages.dev',
+  },
+  {
     title: '自己紹介ページ',
     description: 'HTMLとCSSだけで作った、はじめての自己紹介ページです。',
     url: 'https://example.com/profile',
