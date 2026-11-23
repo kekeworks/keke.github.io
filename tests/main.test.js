@@ -37,6 +37,14 @@ test('renderWorks 空', () => {
   assert.ok(renderWorks([]).includes('作品はまだありません'));
 });
 
+test('renderWorks は WORKS が配列でないときエラー表示', () => {
+  assert.ok(renderWorks(undefined).includes('works.js の書き方に間違いがあるようです'));
+});
+
+test('tags が文字列でも落ちない', () => {
+  assert.doesNotThrow(() => renderWorkCard({ ...full, tags: 'HTML' }));
+});
+
 test('画像は読み込み失敗時に自分で消える', () => {
   assert.ok(renderWorkCard(full).includes('onerror="this.remove()"'));
 });

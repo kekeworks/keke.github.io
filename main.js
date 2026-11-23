@@ -10,9 +10,9 @@ function escapeHtml(s) {
 function renderWorkCard(work) {
   const e = escapeHtml;
   const img = work.image
-    ? `<img src="${e(work.image)}" alt="${e(work.title)}" loading="lazy" onerror="this.remove()">`
+    ? `<img src="${e(work.image)}" alt="" loading="lazy" onerror="this.remove()">`
     : '';
-  const tags = work.tags && work.tags.length
+  const tags = Array.isArray(work.tags) && work.tags.length
     ? `<ul class="tags">${work.tags.map((t) => `<li>${e(t)}</li>`).join('')}</ul>`
     : '';
   const site = work.url
@@ -25,7 +25,10 @@ function renderWorkCard(work) {
 }
 
 function renderWorks(works) {
-  if (!works || !works.length) return '<p class="empty">作品はまだありません</p>';
+  if (!Array.isArray(works)) {
+    return '<p class="empty error">works.js の書き方に間違いがあるようです。カンマ「,」や括弧「{ }」を確認してください。</p>';
+  }
+  if (!works.length) return '<p class="empty">作品はまだありません</p>';
   return works.map(renderWorkCard).join('\n');
 }
 
@@ -34,5 +37,5 @@ if (typeof module !== 'undefined' && module.exports) {
 }
 if (typeof document !== 'undefined') {
   const el = document.getElementById('works-list');
-  if (el) el.innerHTML = renderWorks(window.WORKS || []);
+  if (el) el.innerHTML = renderWorks(window.WORKS);
 }

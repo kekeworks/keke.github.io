@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light dark;
   --bg: #fbf8f1;
   --surface: #ffffff;
   --text: #1c1b1a;
@@ -171,9 +172,11 @@ h2::before {
   color: var(--accent);
 }
 
-.btn:hover, .btn:focus-visible { filter: brightness(1.1); outline: 3px solid var(--border); }
+.btn:hover, .btn:focus-visible { filter: brightness(1.1); }
+.btn:focus-visible { outline: 3px solid var(--text); outline-offset: 2px; }
 
 .empty { color: var(--muted); }
+.empty.error { color: var(--text); border: 2px solid var(--accent); border-radius: 8px; padding: 1rem; }
 
 .site-footer {
   margin-top: 3rem;
