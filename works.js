@@ -10,17 +10,5 @@ var WORKS = [
     repo: 'https://github.com/example/profile',
     tags: ['HTML', 'CSS'],
   },
-  {
-    title: 'ToDoリスト',
-    description: 'JavaScriptでタスクの追加と削除ができるアプリです。',
-    url: 'https://example.com/todo',
-    repo: 'https://github.com/example/todo',
-    tags: ['JavaScript'],
-  },
-  {
-    title: '天気チェッカー',
-    description: '都市名から今日の天気を表示するページです。',
-    url: 'https://example.com/weather',
-  },
 ];
 if (typeof window !== 'undefined') window.WORKS = WORKS;
