@@ -1,174 +1,173 @@
+/* デザイン「方眼ノート」: 方眼紙の背景に、作品カードをテープで貼ったような見た目。
+   フォント（Klee One / Zen Maru Gothic）は index.html の <link> で読み込んでいる */
+
 :root {
   color-scheme: light;
-  --bg: #ffffff;
-  --surface: #ffffff;
-  --text: #1c1b1a;
-  --muted: #5a554e;
-  --accent: #c2410c;
-  --accent-text: #ffffff;
-  --border: #ddd6c8;
-  --tag-bg: #f3e8d6;
+  --paper: #fbfcfd;      /* 紙の色 */
+  --grid: #e1e9f2;       /* 方眼の線 */
+  --ink: #1d2b3a;        /* 文字 */
+  --muted: #4f5d6c;      /* 補足の文字 */
+  --pen: #2350a8;        /* 青ペン（リンク・ボタン） */
+  --marker: #fff27a;     /* 蛍光ペン（見出しの下線） */
+  --tape: rgba(255, 214, 120, 0.75); /* マスキングテープ */
 }
 
 * { box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+  color: var(--ink);
+  background-color: var(--paper);
+  /* 24pxごとの方眼 */
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 24px 24px;
+  font-family: "Zen Maru Gothic", "Hiragino Maru Gothic ProN", "Yu Gothic", sans-serif;
+  font-weight: 500;
   font-size: 1.125rem;
-  line-height: 1.8;
+  line-height: 1.9;
   overflow-wrap: anywhere;
 }
 
-.wrap {
-  max-width: 1040px;
-  margin: 0 auto;
-  padding: 0 16px;
-}
+.wrap { max-width: 920px; margin: 0 auto; padding: 0 16px; }
+a { color: var(--pen); }
 
-a { color: var(--accent); }
-
-.site-header {
-  padding: 3rem 0 2rem;
-  border-bottom: 4px solid var(--accent);
-}
+.site-header { padding: 3.5rem 0 1.5rem; }
 
 .eyebrow {
   margin: 0;
-  letter-spacing: 0.3em;
-  font-size: 0.85rem;
-  font-weight: 700;
-  color: var(--accent);
+  font-family: "Klee One", serif;
+  font-size: 1rem;
+  color: var(--muted);
 }
 
+/* 名前は手書き風の教科書体で大きく */
 h1 {
-  margin: 0.25rem 0 1rem;
-  font-size: clamp(2.4rem, 9vw, 4.5rem);
-  font-weight: 900;
+  margin: 0 0 1.25rem;
+  font-family: "Klee One", serif;
+  font-weight: 600;
+  font-size: clamp(2.6rem, 10vw, 5rem);
   line-height: 1.2;
 }
 
 nav a {
   display: inline-block;
-  margin: 0 1rem 0.25rem 0;
-  color: var(--text);
+  margin: 0 1.25rem 0.25rem 0;
+  color: var(--ink);
   font-weight: 700;
-  text-decoration: none;
-  border-bottom: 2px solid var(--border);
+  text-decoration: underline;
+  text-decoration-style: wavy;
+  text-decoration-color: var(--pen);
+  text-underline-offset: 6px;
 }
+nav a:hover, nav a:focus-visible { color: var(--pen); }
 
-nav a:hover, nav a:focus-visible { border-color: var(--accent); }
+section { padding: 2rem 0 1rem; }
 
-section { padding: 2.5rem 0 1rem; }
-
+/* 見出しは蛍光ペンを引いたような下線 */
 h2 {
+  display: inline-block;
   margin: 0 0 1.25rem;
-  font-size: 1.75rem;
-  font-weight: 900;
+  font-family: "Klee One", serif;
+  font-weight: 600;
+  font-size: 1.9rem;
+  line-height: 1.4;
+  background: linear-gradient(transparent 58%, var(--marker) 58%, var(--marker) 92%, transparent 92%);
+  padding: 0 0.2em;
 }
 
-h2::before {
-  content: "";
-  display: inline-block;
-  width: 0.6em;
-  height: 0.6em;
-  margin-right: 0.5em;
-  background: var(--accent);
-}
+#about p { max-width: 36em; }
 
 .works-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
-  gap: 1.5rem;
+  gap: 2rem;
+  padding-top: 0.75rem;
 }
 
+/* 作品カード: テープで貼った紙。少しだけ傾ける */
 .work-card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  background: var(--surface);
-  border: 2px solid var(--border);
-  border-radius: 8px;
-  padding: 1.25rem;
   min-width: 0;
+  background: #fff;
+  padding: 1.75rem 1.5rem 1.5rem;
+  box-shadow: 0 1px 2px rgba(29, 43, 58, 0.12), 0 6px 14px rgba(29, 43, 58, 0.08);
+  transform: rotate(-0.8deg);
+}
+.work-card:nth-child(even) { transform: rotate(0.7deg); }
+
+.work-card::before {
+  content: "";
+  position: absolute;
+  top: -12px;
+  left: 50%;
+  width: 96px;
+  height: 24px;
+  transform: translateX(-50%) rotate(-2deg);
+  background: var(--tape);
 }
 
 .work-card img {
   width: 100%;
   aspect-ratio: 16 / 9;
   object-fit: cover;
-  border-radius: 4px;
   margin-bottom: 1rem;
-  border: 1px solid var(--border);
+  border: 1px solid var(--grid);
 }
 
-.work-card h3 {
-  margin: 0 0 0.5rem;
-  font-size: 1.35rem;
-  font-weight: 700;
-}
+.work-card h3 { margin: 0 0 0.4rem; font-size: 1.35rem; font-weight: 700; }
+.work-card p { margin: 0 0 1rem; color: var(--muted); line-height: 1.75; }
 
-.work-card p {
-  margin: 0 0 1rem;
-  color: var(--muted);
-  line-height: 1.7;
-}
-
+/* タグは青ペンで丸く囲んだように */
 .tags {
   list-style: none;
   margin: 0 0 1rem;
   padding: 0;
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
+  gap: 0.6rem;
 }
-
 .tags li {
-  background: var(--tag-bg);
+  border: 2px solid var(--pen);
   border-radius: 999px;
-  padding: 0.1rem 0.9rem;
+  padding: 0 0.9rem;
+  color: var(--pen);
   font-size: 0.95rem;
   font-weight: 700;
+  background: #fff;
 }
+.tags-large li { font-size: 1.1rem; padding: 0.15rem 1.1rem; }
 
-.tags-large li { font-size: 1.1rem; padding: 0.25rem 1.1rem; }
-
-.links {
-  margin-top: auto;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-}
+.links { margin-top: auto; display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
 .btn {
   display: inline-block;
-  padding: 0.5rem 1.1rem;
-  background: var(--accent);
-  color: var(--accent-text);
-  border: 2px solid var(--accent);
+  padding: 0.45rem 1.1rem;
+  background: var(--pen);
+  color: #fff;
+  border: 2px solid var(--pen);
   border-radius: 6px;
   font-weight: 700;
   text-decoration: none;
 }
-
-.btn-sub {
-  background: transparent;
-  color: var(--accent);
-}
-
-.btn:hover, .btn:focus-visible { filter: brightness(1.1); }
-.btn:focus-visible { outline: 3px solid var(--text); outline-offset: 2px; }
+.btn-sub { background: #fff; color: var(--pen); }
+.btn:hover { filter: brightness(1.15); }
+.btn:focus-visible, nav a:focus-visible { outline: 3px solid var(--ink); outline-offset: 2px; }
 
 .empty { color: var(--muted); }
-.empty.error { color: var(--text); border: 2px solid var(--accent); border-radius: 8px; padding: 1rem; }
+.empty.error { color: var(--ink); background: #fff; border: 2px solid var(--pen); padding: 1rem; }
 
 .site-footer {
   margin-top: 3rem;
-  padding: 1.5rem 0;
-  border-top: 1px solid var(--border);
+  padding: 1.5rem 0 2rem;
   color: var(--muted);
   font-size: 0.95rem;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
 }
