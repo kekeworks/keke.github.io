@@ -8,12 +8,5 @@ var WORKS = [
     description: '実習先のレビューをまとめたサイトです。',
     url: 'https://jisshu-review.pages.dev',
   },
-  {
-    title: '自己紹介ページ',
-    description: 'HTMLとCSSだけで作った、はじめての自己紹介ページです。',
-    url: 'https://example.com/profile',
-    repo: 'https://github.com/example/profile',
-    tags: ['HTML', 'CSS'],
-  },
 ];
 if (typeof window !== 'undefined') window.WORKS = WORKS;
